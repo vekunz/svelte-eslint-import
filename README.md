@@ -1,38 +1,20 @@
-# create-svelte
+# svelte-eslint-import
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This project shows an error with the combination of svelte-eslint-parser and eslint-plugin-import.
 
-## Creating a project
+Basically this is a default SvelteKit project (`npm create svelte`), which is extended just with the `eslint-plugin-import`
+and a bunch of rules from it.
 
-If you're seeing this, you've probably already done this step. Congrats!
+If you run `npm run lint` you will see the following error:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```
+Error while parsing pathToRepo\svelte-eslint-import\node_modules\@neoconfetti\svelte\dist\index.js
+Line 1, column 14: Unexpected token
+`parseForESLint` from parser `pathToRepo\svelte-eslint-import\node_modules\svelte-eslint-parser\lib\index.js` is invalid and will just be ignored
 ```
 
-## Developing
+In addition, every `.svelte` file has this ESLint finding:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+````
+  1:1  warning  This module could be parsed as a valid script  import/unambiguous
+````
