@@ -1,15 +1,12 @@
 module.exports = {
 	root: true,
-	extends: [
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:svelte/recommended'
-	],
+	extends: [],
 	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint', 'import'],
+	plugins: ['@typescript-eslint', 'import', 'svelte'],
 	parserOptions: {
 		sourceType: 'module',
 		ecmaVersion: 2020,
+		project: './tsconfig.eslint.json',
 		extraFileExtensions: ['.svelte']
 	},
 	env: {
@@ -24,8 +21,25 @@ module.exports = {
 			parserOptions: {
 				parser: '@typescript-eslint/parser'
 			}
+		},
+		{
+			files: ['*.ts'],
+			parser: '@typescript-eslint/parser'
 		}
 	],
+	settings: {
+		"import/resolver": {
+			"node": {},
+			"typescript": {
+				"alwaysTryTypes": true
+			}
+		},
+		"import/parsers": {
+			"svelte-eslint-parser": [".svelte"],
+			"@typescript-eslint/parser": [".ts"],
+			"espree": [".js"]
+		}
+	},
 	rules: {
 		"import/default": "warn",
 		"import/export": "error",
